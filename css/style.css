@@ -1,0 +1,394 @@
+/* =========================================================
+   NATHY TOMAZ — LANDING PAGE
+   ========================================================= */
+
+:root {
+  --navy: #063e61;
+  --blue: #17688d;
+  --sky: #dff5fb;
+  --ice: #effbfe;
+  --cyan: #9edce9;
+  --line: #c7e5ee;
+  --text: #17455e;
+  --muted: #527487;
+  --white: #fff;
+  --shadow: 0 18px 50px rgba(8, 72, 101, 0.12);
+  --radius: 30px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: #fff;
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* Header & Nav */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 74px; padding: 0 max(24px, 6vw);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(199, 229, 238, 0.8);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  color: var(--navy);
+  font: 700 1.25rem/1 "Playfair Display", serif;
+}
+
+.sparkle, .title-sparkle {
+  display: inline-block;
+  color: #79bfd5;
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+.title-sparkle { font-size: 0.55em; vertical-align: middle; margin-left: 0.15em; }
+
+.nav { display: flex; gap: 30px; font-size: 0.9rem; font-weight: 600; }
+.nav a { position: relative; padding: 8px 0; }
+.nav a:after {
+  content: ""; position: absolute; right: 0; bottom: 2px; left: 0; height: 2px;
+  background: var(--blue); transform: scaleX(0); transform-origin: right; transition: 0.25s;
+}
+.nav a:hover:after { transform: scaleX(1); transform-origin: left; }
+
+.menu-toggle { display: none; border: 0; background: transparent; padding: 8px; cursor: pointer; }
+.menu-toggle span { display: block; width: 24px; height: 2px; margin: 5px; background: var(--navy); }
+
+/* Hero Section */
+.hero {
+  min-height: calc(100vh - 74px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  padding: 80px max(24px, 7vw);
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9feff 0%, #e6f8fc 52%, #c8edf6 100%);
+}
+.hero-copy { max-width: 720px; }
+.eyebrow {
+  margin: 0 0 18px;
+  color: #3b7c93;
+  font: 500 0.9rem "Playfair Display", serif;
+  letter-spacing: 0.04em;
+}
+.hero h1, h2, h3 { font-family: "Playfair Display", serif; }
+.hero h1 {
+  max-width: 780px; margin: 0;
+  color: var(--navy);
+  font-size: clamp(3rem, 5.8vw, 6.2rem);
+  line-height: 0.98; letter-spacing: -0.045em;
+}
+.hero h1 span { display: block; color: var(--blue); font-size: 0.55em; line-height: 1.15; margin-top: 10px; letter-spacing: -0.025em; }
+.hero-text { max-width: 650px; margin: 28px 0 0; color: var(--muted); font-size: 1.05rem; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.button, .book-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 11px 20px; border-radius: 999px;
+  border: 1px solid transparent; font-weight: 700; cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.button:hover, .book-button:hover { transform: translateY(-2px); }
+.primary { color: #fff; background: var(--navy); box-shadow: 0 12px 28px rgba(6, 62, 97, 0.18); }
+.primary:hover { background: var(--blue); }
+.secondary, .book-button { color: var(--navy); background: #fff; border-color: var(--line); }
+
+/* Arte do Hero & Caderno */
+.hero-art { position: relative; min-height: 510px; }
+.hero-art:before {
+  content: ""; position: absolute; inset: 8% 5%; border-radius: 50%;
+  background: rgba(191, 235, 246, 0.7); filter: blur(4px);
+}
+.spark { position: absolute; color: #7dbdd0; z-index: 3; }
+.hero-s1 { top: 8%; left: 8%; font-size: 1.8rem; }
+.hero-s2 { top: 24%; right: 8%; font-size: 1.2rem; }
+.hero-s3 { bottom: 9%; left: 13%; }
+
+.notebook {
+  position: absolute; z-index: 2; inset: 12% 14% 10% 8%;
+  overflow: hidden; border: 2px solid #a8d4e2; border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95); box-shadow: var(--shadow); transform: rotate(-5deg);
+}
+.notebook:before { content: ""; position: absolute; top: 0; bottom: 0; left: 18%; border-left: 2px solid #d6edf3; }
+.spiral { position: absolute; top: 18px; right: 28px; left: 28px; display: flex; justify-content: space-between; }
+.spiral i { width: 12px; height: 12px; border-radius: 50%; background: #82bfd2; }
+
+/* Pautas e Alinhamento Preciso */
+.notebook-lines-svg {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+}
+.notebook-line {
+  stroke: #c2e2eb; stroke-width: 2; stroke-dasharray: 4, 3;
+}
+
+.paper-sparkle {
+  position: absolute; z-index: 3; color: #82c8db; opacity: 0.8;
+  animation: twinkle 2.2s ease-in-out infinite; pointer-events: none;
+}
+.spark-p1 { top: 18%; right: 15%; font-size: 1.1rem; }
+.spark-p2 { top: 52%; right: 22%; font-size: 0.9rem; animation-delay: 0.6s; }
+.spark-p3 { bottom: 12%; left: 22%; font-size: 1rem; animation-delay: 1.1s; }
+
+.hand-note {
+  position: absolute; color: #17688d;
+  font-family: "Playfair Display", serif; font-style: italic; font-weight: 600;
+  line-height: 1; pointer-events: none; transform: rotate(-3deg);
+  transform-origin: bottom left;
+}
+.note-ideias { top: 23.5%; left: 25%; font-size: clamp(1.4rem, 2.8vw, 1.9rem); }
+.note-amor { top: 41%; left: 41%; font-size: clamp(1.3rem, 2.6vw, 1.8rem); }
+.note-sonho { top: 58.5%; left: 31%; font-size: clamp(1.35rem, 2.7vw, 1.85rem); }
+.note-palavras { top: 69.5%; left: 22%; font-size: clamp(1.4rem, 2.8vw, 1.9rem); }
+
+.floating-book { position: absolute; right: 8%; top: 8%; z-index: 4; width: 70px; animation: float 4s ease-in-out infinite; }
+.floating-book svg { fill: #6eaec4; stroke: #4e91aa; stroke-width: 2; }
+
+/* Seções Principais */
+.section { width: min(1180px, calc(100% - 48px)); margin: auto; padding: 105px 0; scroll-margin-top: 90px; }
+.about, .contact, .section-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: end; }
+h2 { margin: 0; color: var(--navy); font-size: clamp(2.5rem, 4.8vw, 4.5rem); line-height: 1.04; letter-spacing: -0.035em; }
+.body-copy p { margin: 0 0 18px; color: var(--muted); }
+
+/* Card do Livro */
+.books { padding-top: 55px; }
+.section-heading { margin-bottom: 42px; }
+.section-heading > p { max-width: 420px; margin: 0; color: var(--muted); }
+
+.books-grid.single-book {
+  display: flex; justify-content: center;
+  max-width: 620px; margin: 0 auto;
+}
+.books-grid.single-book .book-card { width: 100%; }
+
+.book-card { display: flex; flex-direction: column; overflow: hidden; min-height: 580px; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+
+/* Arte do Livro: Fundo Totalmente Azul */
+.book-art {
+  position: relative; min-height: 320px; aspect-ratio: 16 / 10; overflow: hidden;
+  background: linear-gradient(180deg, #d2f3fc 0%, #b0e5f3 100%);
+}
+.book-body { display: flex; flex: 1; flex-direction: column; padding: 30px 36px 36px; }
+.book-body h3 { margin: 0 0 14px; color: var(--navy); font-size: clamp(2.05rem, 3.7vw, 3.2rem); line-height: 1; letter-spacing: -0.03em; }
+.book-body p { margin: 0; color: var(--muted); }
+.book-button { margin-top: auto; align-self: flex-start; padding: 11px 18px; }
+.book-button span { font-size: 1.2rem; transition: transform 0.2s; }
+.book-button:hover span { transform: translateX(4px); }
+
+/* Sparkles na Arte do Livro */
+.sparkle-item { position: absolute; z-index: 2; pointer-events: none; }
+.sp-top-left { top: 12%; left: 10%; width: 34px; height: 34px; animation: sparklePulse 2.4s ease-in-out infinite; }
+.sp-top-right { top: 15%; right: 28%; width: 28px; height: 28px; animation: sparklePulse 3s ease-in-out infinite 0.5s; }
+.sp-mid-left { top: 48%; left: 18%; width: 22px; height: 22px; animation: sparklePulse 2.8s ease-in-out infinite 1s; }
+.sp-bottom-right { bottom: 12%; right: 10%; width: 32px; height: 32px; animation: sparklePulse 2.2s ease-in-out infinite 0.3s; }
+
+/* Rede de Vôlei Completa inspirada no ícone */
+.full-volleyball-net {
+  position: absolute; bottom: 12px; left: 5%; right: 5%; height: 140px; z-index: 1;
+  pointer-events: none;
+}
+.full-volleyball-net svg {
+  width: 100%; height: 100%; display: block;
+}
+
+/* Ícones do Livro */
+.volleyball {
+  position: absolute; top: 12%; right: 8%; width: 100px; height: 100px; z-index: 3;
+  filter: drop-shadow(0 10px 20px rgba(6, 62, 97, 0.12));
+  animation: float 4s ease-in-out infinite;
+}
+.camera {
+  position: absolute; bottom: 20%; left: 12%; width: 68px; height: 52px; z-index: 4;
+  transform: rotate(-6deg); filter: drop-shadow(0 8px 16px rgba(6, 62, 97, 0.15));
+}
+
+.floating-book, .volleyball {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Citação */
+.quote { padding: 95px 24px; text-align: center; color: #fff; background: var(--navy); }
+.quote svg { width: 42px; fill: #a5d8e7; margin-bottom: 20px; }
+.quote blockquote { max-width: 850px; margin: 0 auto 18px; font: clamp(2rem, 4vw, 3.5rem)/1.1 "Playfair Display", serif; }
+.quote p { margin: 0; color: #a9d0dc; }
+
+/* Contato */
+.contact { align-items: start; }
+.contact-details { display: flex; flex-direction: column; gap: 24px; }
+.socials { display: grid; gap: 12px; }
+.socials a {
+  display: grid; grid-template-columns: 34px 1fr 20px; align-items: center; gap: 10px;
+  padding: 17px 20px; border: 1px solid var(--line); border-radius: 16px; background: #fff;
+  color: var(--navy); font-weight: 600; transition: 0.2s;
+}
+.socials a:hover { transform: translateX(5px); box-shadow: 0 12px 28px rgba(17, 82, 111, 0.1); }
+.social-icon { font-size: 1.25rem; color: var(--blue); }
+.socials a span:last-child { color: #75a9ba; }
+
+.email-text { margin: 8px 0 0; font-size: 1.05rem; color: var(--navy); }
+.email-text strong { font-weight: 700; }
+.email-text a { color: var(--blue); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; }
+.email-text a:hover { color: var(--navy); }
+
+/* Rodapé */
+footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px max(24px, 7vw); background: #f2fafc; border-top: 1px solid var(--line); color: #6c96a5; font-size: 0.85rem; }
+footer a { font-weight: 700; }
+
+/* Modal Fixo */
+.modal {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  margin: 0; width: min(620px, calc(100% - 32px)); padding: 44px;
+  border: 1px solid var(--line); border-radius: 28px; background: #fbfeff;
+  color: var(--text); box-shadow: 0 30px 90px rgba(3, 48, 75, 0.25);
+}
+.modal::backdrop { background: rgba(4, 42, 64, 0.48); backdrop-filter: blur(5px); }
+.modal h2 { margin-bottom: 18px; font-size: clamp(2.3rem, 6vw, 4rem); }
+.modal > p:not(.eyebrow) { margin: 0; color: var(--muted); }
+
+.modal-close {
+  position: absolute; top: 20px; right: 20px;
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border: 0; border-radius: 50%;
+  background: var(--sky); color: var(--navy);
+  font-size: 1.4rem; font-weight: 600; line-height: 1; cursor: pointer;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+}
+.modal-close:hover { background: #c3edf8; color: var(--blue); transform: scale(1.05); }
+
+.modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+/* Animações */
+@keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.85) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(15deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes sparklePulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.25) rotate(20deg); }
+}
+
+/* Responsividade */
+@media(max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 70px; }
+  .hero-art { min-height: 420px; }
+  .about, .contact, .section-heading { grid-template-columns: 1fr; gap: 30px; align-items: start; }
+}
+@media(max-width: 700px) {
+  .header { padding: 0 20px; }
+  .menu-toggle { display: block; }
+  .nav {
+    position: absolute; top: calc(100% + 8px); right: 16px; left: 16px; display: none; flex-direction: column; gap: 0;
+    padding: 8px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, 0.98); box-shadow: var(--shadow);
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px 14px; }
+  .nav a:after { display: none; }
+  .hero { padding: 58px 20px 35px; }
+  .hero h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+  .hero-art { min-height: 330px; }
+  .notebook { inset: 14% 7% 10% 2%; }
+  .floating-book { width: 55px; }
+  .section { width: calc(100% - 32px); padding: 75px 0; }
+  .books { padding-top: 35px; }
+  .book-card { min-height: 0; }
+  .book-art { min-height: 270px; }
+  .book-body { padding: 28px 25px 30px; }
+  .book-body h3 { font-size: 2.35rem; }
+  .volleyball { width: 80px; height: 80px; right: 5%; }
+  .camera { width: 54px; height: 42px; left: 6%; }
+  .quote { padding: 75px 20px; }
+  .modal { padding: 38px 24px 26px; }
+  footer { flex-direction: column; }
+}
+@media(max-width: 430px) {
+  .actions, .modal-actions { flex-direction: column; }
+  .actions .button, .modal-actions .button { width: 100%; }
+  .book-art { min-height: 240px; }
+}
+@media(prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *:before, *:after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+/* Seção Sobre */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: center;
+}
+/* Layout em 2 colunas para colocar a imagem lado a lado do texto */
+.about {
+  display: grid;
+  grid-template-columns: 380px 1fr; /* Coluna da imagem + Coluna do texto */
+  gap: 48px;
+  align-items: center;
+}
+
+/* Configuração da foto */
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+  object-fit: cover;
+}
+
+/* Alinhamento vertical do conteúdo de texto */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Título maior */
+.about-title {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(3rem, 4.5vw, 4.2rem); /* Aumenta a escala do título */
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+/* Responsividade para telas menores (celular) */
+@media (max-width: 900px) {
+  .about {
+    grid-template-columns: 1fr; /* Em telas menores fica empilhado */
+    gap: 32px;
+  }
+  
+  .about-image img {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+/* 1. Aumenta os 3 rótulos superiores (Sobre, Livros, Contato) */
+.eyebrow,
+#sobre .eyebrow,
+#livros .eyebrow,
+#contato .eyebrow {
+  font-size: 1.25rem !important; /* Aumenta o tamanho do texto marcado (20px) */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* 2. Diminui ligeiramente as frases principais logo abaixo */
+.section h2,
+.about-title,
+#sobre h2,
+#livros h2,
+#contato h2 {
+  font-size: clamp(2.2rem, 3.5vw, 3rem) !important; /* Reduz a escala para equilibrar a página */
+  line-height: 1.15;
+}
