@@ -392,3 +392,20 @@ footer a { font-weight: 700; }
   font-size: clamp(2.2rem, 3.5vw, 3rem) !important; /* Reduz a escala para equilibrar a página */
   line-height: 1.15;
 }
+footer {
+  display: flex !important;
+  justify-content: space-between !important; /* Separa esquerda e direita */
+  align-items: center !important; /* Alinha o botão com os textos */
+  gap: 16px;
+  width: 100%;
+}
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+footer .back-to-top {
+  margin-left: auto;
+  white-space: nowrap; /* Impede a quebra de linha no botão */
+}
