@@ -1,8 +1,8 @@
 const books = {
   volley: {
-    category: "01 — Romance",
-    title: "Entre quadras e passarelas",
-    description: "Um universo onde o esporte encontra a moda, entre partidas, sonhos, câmeras e sentimentos.",
+    category: "Romance",
+    title: "Entre Flashes e Quadras",
+    description: "Um livro onde o esporte encontra a moda, misturando o melhor dos dois mundos. Eric e Diana se encantam um pelo outro entre partidas, editorias e uma mistura de sentimentos.",
     buy: "https://www.amazon.com.br/dp/B0H6369T5B"
   }
 };
